@@ -22,7 +22,16 @@ require('./config')(app);
 const projectName = 'Drop, Shop, & Chop';
 const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
-app.locals.title = `${capitalized(projectName)}- a weekly meal planning & grocery list app`;
+app.locals.title = `${capitalized(projectName)} - 
+a weekly meal planning & grocery list app`;
+
+app.locals.key = process.env.API_KEY;
+
+app.use((req, res, next) => {
+    app.locals.currentUser = req.session.user ? req.session.user : false;
+    next();
+});
+
 
 // 👇 Start handling routes here
 const index = require('./routes/index');
@@ -30,6 +39,9 @@ app.use('/', index);
 
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
+
+const recipesRoutes = require('./routes/recipes');
+app.use('/recipes', recipesRoutes);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
