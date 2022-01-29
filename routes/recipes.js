@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const axios = require('axios').default;
+const steakSearchResults = require('../data.js');
 
 const mongoose = require("mongoose");
 
@@ -17,7 +18,7 @@ router.get('/search', isLoggedIn, (req, res, next) => {
 });
 
 router.post('/search', isLoggedIn, (req, res, next) => {
-    console.log('submitting search query for: ', req.body.query);
+    console.log(steakSearchResults);
     // Setting parameters for API call
     let options = {
         method: 'GET',
@@ -31,15 +32,39 @@ router.post('/search', isLoggedIn, (req, res, next) => {
             'x-rapidapi-key': `${process.env.API_KEY}`
         }
     };
+    let results = steakSearchResults.results;
+    res.render('recipes/results', {results});
 
     // Calling API
+    // axios.request(options)
+    //     .then(function(response) {
+    //         console.log(response.data);
+    //     })
+    //     .catch(function(err) {
+    //         console.error(error);
+    //     });
+});
+
+router.get('/info/:recipeId', isLoggedIn, (req, res, next) => {
+    let options = {
+        method: 'GET',
+        url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${req.params.recipeId}/information`,
+        headers: {
+          'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+          'x-rapidapi-key': `${process.env.API_KEY}`
+        }
+      };
+
     axios.request(options)
-        .then(function(response) {
-            console.log(response.data);
-        })
-        .catch(function(err) {
-            console.error(error);
-        });
+      .then(function (response) {
+          console.log(response.data);
+          let info = response.data;
+          res.render("recipes/info", {info});
+      })
+      .catch(function (error) {
+          console.error(error);
+      });
+    
 });
 
 

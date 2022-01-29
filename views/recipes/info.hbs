@@ -1,0 +1,13 @@
+<div class="card mb-3">
+  <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{this.title}}</h5>
+    <ul>
+    {{#each this.extendedIngredients}}
+        <li class="card-text">{{this.name}} - {{this.amount}} {{this.unit}}</li>
+    {{/each}}
+    </ul>
+    <p class="card-text">{{this.instructions}}</p>
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+  </div>
+</div>

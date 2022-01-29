@@ -6,8 +6,9 @@ const recipeSchema = new Schema(
         id: Number,
         title: String,
         readyInMinutes: Number,
+        servings: Number,
+        sourceUrl: String,
         image: String,
-        imageUrls: [String],
         // array of objects, which list the ingredients and their amounts
         ingredients: [Schema.Types.Mixed],
         instructions: String,
