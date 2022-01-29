@@ -6,6 +6,10 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
+  "engines": {
+    "node": "16.13.1",
+    "npm": "8.1.2"
+  },
   "dependencies": {
     "axios": "^0.25.0",
     "bcrypt": "^5.0.1",
