@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const axios = require('axios').default;
-const steakSearchResults = require('../data.js');
+const {steakSearchResults, recipeInformation} = require('../data.js');
 
 const mongoose = require("mongoose");
 
@@ -55,18 +55,17 @@ router.get('/info/:recipeId', isLoggedIn, (req, res, next) => {
         }
       };
 
-    axios.request(options)
-      .then(function (response) {
-          console.log(response.data);
-          let info = response.data;
-          res.render("recipes/info", {info});
-      })
-      .catch(function (error) {
-          console.error(error);
-      });
+    // axios.request(options)
+    //   .then(function (response) {
+    //       console.log(response.data);
+    //       let info = response.data;
+    //       res.render("recipes/info", {info});
+    //   })
+    //   .catch(function (error) {
+    //       console.error(error);
+    //   });
     
 });
-
 
 
 module.exports = router;
