@@ -3,3 +3,11 @@
     align-items: center;
     justify-content: center;
 }
+
+.mb-3 {
+    width: 600px;
+}
+
+#info-image {
+    width: 500px;
+}

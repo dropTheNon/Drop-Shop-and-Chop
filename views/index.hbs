@@ -1,6 +1,9 @@
 <h1>{{title}}</h1>
-<p>Welcome {{user}}</p>
+<p>Welcome {{user.username}}!</p>
 
-<a href="/recipes/search">Search for Recipes to add to your Cookbook</a>
+<p>You have {{user.recipes.length}} recipes saved</p>
+
+<a class="btn btn-primary" href="/user/profile/{{user._id}}">View your Cookbook</a>
+<a class="btn btn-success" href="/recipes/search">Search for Recipes to add to your Cookbook</a>
 
 <p>version 0.47.0</p>
