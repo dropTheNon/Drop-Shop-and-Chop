@@ -30,24 +30,24 @@ router.post('/search', isLoggedIn, (req, res, next) => {
         url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search',
         params: {
             query: req.body.query,
-            number: 20
+            number: 5
         },
         headers: {
             'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
             'x-rapidapi-key': `${process.env.API_KEY}`
         }
     };
-    let results = steakSearchResults.results;
-    res.render('recipes/results', {results});
+    // let results = steakSearchResults.results;
+    // res.render('recipes/results', {results});
 
     // Calling API
-    // axios.request(options)
-    //     .then(function(response) {
-    //         console.log(response.data);
-    //     })
-    //     .catch(function(err) {
-    //         console.error(error);
-    //     });
+    axios.request(options)
+        .then((response) => {
+            res.render('recipes/results', { results: response.data.results });
+        })
+        .catch((error) => {
+            console.error(error);
+        });
 });
 
 router.get('/info/:recipeId', isLoggedIn, (req, res, next) => {
@@ -60,57 +60,55 @@ router.get('/info/:recipeId', isLoggedIn, (req, res, next) => {
         }
       };
 
-    // axios.request(options)
-    //   .then(function (response) {
-    //       console.log("response.data: ", response.data);
-    //       let info = response.data;
-    //       res.render("recipes/info", {
-    //           title: response.data.title,
-    //           id: response.data.id,
-    //           image: response.data.image,
-    //           ingredients: response.data.extendedIngredients,
-    //           instructions: response.data.instructions,
-    //           readyInMinutes: response.data.readyInMinutes,
-    //           servings: response.data.servings,
-    //           sourceUrl: response.data.sourceUrl
-    //       });
-    //   })
-    //   .catch(function (error) {
-    //       console.error(error);
-    //   });
+    axios.request(options)
+        .then(function (response) {
+            currentRecipe.title = response.data.title;
+            currentRecipe.id = response.data.id;
+            currentRecipe.image = response.data.image;
+            currentRecipe.ingredients = response.data.extendedIngredients;
+            currentRecipe.instructions = response.data.instructions;
+            currentRecipe.readyInMinutes = response.data.readyInMinutes;
+            currentRecipe.servings = response.data.servings;
+            currentRecipe.sourceUrl = response.data.sourceUrl;
+            
+            res.render("recipes/info", {
+                title: response.data.title,
+                id: response.data.id,
+                image: response.data.image,
+                ingredients: response.data.extendedIngredients,
+                instructions: response.data.instructions,
+                readyInMinutes: response.data.readyInMinutes,
+                servings: response.data.servings,
+                sourceUrl: response.data.sourceUrl
+            });
+      })
+      .catch(function (error) {
+          console.error(error);
+      });
 
-    currentRecipe.title = recipeInformation.title;
-    currentRecipe.id = recipeInformation.id;
-    currentRecipe.image = recipeInformation.image;
-    currentRecipe.ingredients = recipeInformation.extendedIngredients;
-    currentRecipe.instructions = recipeInformation.instructions;
-    currentRecipe.readyInMinutes = recipeInformation.readyInMinutes;
-    currentRecipe.servings = recipeInformation.servings;
-    currentRecipe.sourceUrl = recipeInformation.sourceUrl;
+    // currentRecipe.title = recipeInformation.title;
+    // currentRecipe.id = recipeInformation.id;
+    // currentRecipe.image = recipeInformation.image;
+    // currentRecipe.ingredients = recipeInformation.extendedIngredients;
+    // currentRecipe.instructions = recipeInformation.instructions;
+    // currentRecipe.readyInMinutes = recipeInformation.readyInMinutes;
+    // currentRecipe.servings = recipeInformation.servings;
+    // currentRecipe.sourceUrl = recipeInformation.sourceUrl;
 
-    // currentRecipe.title = response.data.title;
-    // currentRecipe.id = response.data.id;
-    // currentRecipe.image = response.data.image;
-    // currentRecipe.ingredients = response.data.extendedIngredients;
-    // currentRecipe.instructions = response.data.instructions;
-    // currentRecipe.readyInMinutes = response.data.readyInMinutes;
-    // currentRecipe.servings = response.data.servings;
-    // currentRecipe.sourceUrl = response.data.sourceUrl;
 
-    res.render("recipes/info", {
-        title: recipeInformation.title,
-        id: recipeInformation.id,
-        image: recipeInformation.image,
-        ingredients: recipeInformation.extendedIngredients,
-        instructions: recipeInformation.instructions,
-        readyInMinutes: recipeInformation.readyInMinutes,
-        servings: recipeInformation.servings,
-        sourceUrl: recipeInformation.sourceUrl
-    });
+    // res.render("recipes/info", {
+    //     title: recipeInformation.title,
+    //     id: recipeInformation.id,
+    //     image: recipeInformation.image,
+    //     ingredients: recipeInformation.extendedIngredients,
+    //     instructions: recipeInformation.instructions,
+    //     readyInMinutes: recipeInformation.readyInMinutes,
+    //     servings: recipeInformation.servings,
+    //     sourceUrl: recipeInformation.sourceUrl
+    // });
 });
 
 router.get('/save/:recipeId', isLoggedIn, (req, res, next) => {
-    console.log("getting /save/:recipeId");
     Recipe.create(currentRecipe)
         .then((createdRecipe) => {
             console.log("Recipe created!");
@@ -124,7 +122,7 @@ router.get('/save/:recipeId', isLoggedIn, (req, res, next) => {
             .then((updatedUser) => {
                 req.session.user = updatedUser;
                 // errr, where to redirect to?  route for this redirect??
-                res.redirect('/');
+                res.redirect(`../../user/profile/${req.session.user._id}`);
             })
             .catch((error) => {
                 console.error(error);

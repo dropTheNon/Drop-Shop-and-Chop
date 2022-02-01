@@ -1,0 +1,44 @@
+<div class="center-content">
+    <form class='form__create-form'
+        action="/user/edit-recipe/{{recipe._id}}" method="post">
+        <div class="center-content">
+            <label for="recipe-name">Title:   </label><input id="recipe-name" type="text" name="title" value="{{recipe.title}}">
+            <br/>
+        </div>
+        <div class="center-content">
+            <label for="ready-in-minutes">Cooking time:   </label><input id="ready-in-minutes" type="number" name="readyInMinutes"
+                placeholder="in minutes" value="{{recipe.readyInMinutes}}">
+            <br/>
+        </div>
+        <div class="center-content">
+            <label for="servings">Servings:   </label><input id="servings" type="number" name="servings" value="{{recipe.servings}}">
+            <br/>
+        </div>
+        <div class="center-content">
+            <label for="image">Completed:   </label><input id="image" type="file" value="{{recipe.image}}">
+            <br/>
+        </div>
+        <div class="ingredient-row">
+            <label for="ingredientName">Ingredient name:   </label><input id="ingredientName" type="text" name="ingredientName" value="{{recipe.ingredients.[0].name}}">
+            <label for="ingredientAmount">Amount:   </label><input id="ingredientAmount" type="number" name="ingredientAmount" value="{{recipe.ingredients.[0].amount}}">
+            <label for="ingredientUnit">Unit of measurement:   </label><input id="ingredientUnit" type="text" name="ingredientUnit" value="{{recipe.ingredients.[0].unit}}">
+        </div>
+            <div class="ingredient-row">
+                <label for="ingredientName">Ingredient name:   </label><input id="ingredientName" type="text" name="ingredientName" value="{{recipe.ingredients.[1].name}}">
+                <label for="ingredientAmount">Amount:   </label><input id="ingredientAmount" type="number" name="ingredientAmount" value="{{recipe.ingredients.[1].amount}}">
+                <label for="ingredientUnit">Unit of measurement:   </label><input id="ingredientUnit" type="text" name="ingredientUnit" value="{{recipe.ingredients.[1].unit}}">
+            </div>
+            <div class="ingredient-row">
+                <label for="ingredientName">Ingredient name:   </label><input id="ingredientName" type="text" name="ingredientName" value="{{recipe.ingredients.[2].name}}">
+                <label for="ingredientAmount">Amount:   </label><input id="ingredientAmount" type="number" name="ingredientAmount" value="{{recipe.ingredients.[2].amount}}">
+                <label for="ingredientUnit">Unit of measurement:   </label><input id="ingredientUnit" type="text" name="ingredientUnit" value="{{recipe.ingredients.[2].unit}}">
+            </div>
+            <label for="instructions">Cooking Instructions:   </label><textarea id="instructions" style="width: 500px; height: 130px;" name="instructions">{{recipe.instructions}}</textarea>
+        </div>
+
+        <br/>
+        <div class="center-content">
+            <button class="btn btn-info">Edit Recipe</button>
+        </div>
+    </form>
+</div>

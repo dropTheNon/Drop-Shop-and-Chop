@@ -1,6 +1,19 @@
 <h2>Welcome, {{user.username}}!</h2>
 
+<div class="center-content">
+    <a href="/user/create-recipe" class="btn btn-success">Add your own recipe</a>
+</div>
+
 <h3>Your saved recipes:</h3>
-{{#each recipe}}
-    
-{{/each}}
+<div class="row">
+    {{#each user.recipes}}
+        <div class="card text-center col-2" style="width: 12rem;">
+        <img class="card-img-top" src="{{this.image}}" alt="photo of {{this.title}}" style="width: 100%">
+        <div class="card-body">
+            <h5 class="card-title center-content">{{this.title}}</h5>
+            <a href="/user/recipes/info/{{this._id}}" class="btn btn-primary center-content">Recipe Details</a>
+            {{!-- <a href="/recipes/save/{{this.id}}" class="btn btn-success center-content">Save to MyRecipes</a> --}}
+        </div>
+        </div>
+    {{/each}}
+</div>

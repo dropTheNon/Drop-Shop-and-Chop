@@ -1,9 +1,23 @@
-<h1>{{title}}</h1>
-<p>Welcome {{user.username}}!</p>
+<div class="center-content">
+    <h1>{{title}}</h1>
+</div>
+<div>
 
-<p>You have {{user.recipes.length}} recipes saved</p>
-
-<a class="btn btn-primary" href="/user/profile/{{user._id}}">View your Cookbook</a>
-<a class="btn btn-success" href="/recipes/search">Search for Recipes to add to your Cookbook</a>
-
-<p>version 0.47.0</p>
+</div>
+{{#if user}}
+<div id="user-welcome">
+    <div class="center-content">
+        <p>Welcome {{user.username}}!</p>
+    </div>
+    <div class="center-content">
+        <p>You have {{user.recipes.length}} recipes saved</p>
+    </div>
+    <div class="center-content">
+        <a class="btn btn-primary" href="/user/profile/{{user._id}}">View your Cookbook</a>
+    </div>
+    <div class="center-content">
+        <a class="btn btn-success" href="/recipes/search">Search for Recipes to add to your Cookbook</a>
+    </div>
+</div>
+{{/if}}
+<p id="version-footer" class="center-content">version 0.65.0</p>

@@ -68,6 +68,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       .then((user) => {
         // Bind the user to the session object
         req.session.user = user;
+        console.log('req.session.user set!');
         res.redirect("/");
       })
       .catch((error) => {

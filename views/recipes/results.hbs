@@ -1,12 +1,12 @@
 <div class="row">
     {{#each results}}
     <div class="card text-center col-4" style="width: 18rem;">
-    <img class="card-img-top" src="https://spoonacular.com/recipeImages/{{this.id}}-240x150.jpg" alt="photo of {{this.title}}">
-    <div class="card-body">
-        <h5 class="card-title center-content">{{this.title}}</h5>
-        <a href="/recipes/info/{{this.id}}" class="btn btn-primary center-content">More info</a>
-        {{!-- <a href="/recipes/save/{{this.id}}" class="btn btn-success center-content">Save to MyRecipes</a> --}}
-    </div>
+        <img class="card-img-top" src="https://spoonacular.com/recipeImages/{{id}}-240x150.jpg" alt="photo of {{this.title}}">
+        <div class="card-body">
+            <h5 class="card-title center-content">{{title}}</h5>
+            <a href="/recipes/info/{{id}}" class="btn btn-primary center-content">More info</a>
+            {{!-- <a href="/recipes/save/{{this.id}}" class="btn btn-success center-content">Save to MyRecipes</a> --}}
+        </div>
     </div>
     {{/each}}
 </div>

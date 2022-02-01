@@ -11,3 +11,25 @@
 #info-image {
     width: 500px;
 }
+
+/* html {
+    z-index: 10;
+    background: url("https://www.sciencefriday.com/wp-content/uploads/2020/08/communal-eating-shutterstock.jpg") no-repeat center center fixed;
+    background-size: cover;
+} */
+
+#version-footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+}
+
+.nav-btns {
+    align-items: right;
+    padding: 7px 50px;
+    margin: 5px 25px;
+}
+
+.btn {
+    margin-top: 10px;
+}

@@ -1,0 +1,35 @@
+<div>
+    <form class='form__create-form'
+        action="/user/create-recipe" method="post">
+        <div>
+            <label for="recipe-name">Title:   </label><input id="recipe-name" type="text" name="title">
+            <br/>
+            <label for="ready-in-minutes">Cooking time:   </label><input id="ready-in-minutes" type="number" name="readyInMinutes"
+                placeholder="in minutes">
+            <br/>
+            <label for="servings">Servings:   </label><input id="servings" type="number" name="servings">
+            <br/>
+            <label for="image">Completed:   </label><input id="image" type="file">
+            <br/>
+            <div class="ingredient-row">
+                <label for="ingredientName">Ingredient name:   </label><input id="ingredientName" type="text" name="ingredientName">
+                <label for="ingredientAmount">Amount:   </label><input id="ingredientAmount" type="number" name="ingredientAmount">
+                <label for="ingredientUnit">Unit of measurement:   </label><input id="ingredientUnit" type="text" name="ingredientUnit">
+            </div>
+            <div class="ingredient-row">
+                <label for="ingredientName">Ingredient name:   </label><input id="ingredientName" type="text" name="ingredientName">
+                <label for="ingredientAmount">Amount:   </label><input id="ingredientAmount" type="number" name="ingredientAmount">
+                <label for="ingredientUnit">Unit of measurement:   </label><input id="ingredientUnit" type="text" name="ingredientUnit">
+            </div>
+            <div class="ingredient-row">
+                <label for="ingredientName">Ingredient name:   </label><input id="ingredientName" type="text" name="ingredientName">
+                <label for="ingredientAmount">Amount:   </label><input id="ingredientAmount" type="number" name="ingredientAmount">
+                <label for="ingredientUnit">Unit of measurement:   </label><input id="ingredientUnit" type="text" name="ingredientUnit">
+            </div>
+            <label for="instructions">Cooking Instructions:   </label><textarea id="instructions" style="width: 500px; height: 130px;" name="instructions"></textarea>
+        </div>
+
+        <br>
+        <button class="btn btn-success">Save Recipe</button>
+    </form>
+</div>
